@@ -190,4 +190,14 @@ table, thead, tbody, th, td, tr {
 		padding-right: 10px; 
 		white-space: nowrap;
 	}
+/*
+	Label the data
+	*/
+	td:nth-of-type(1):before { content: "Item No/Title"; }
+	td:nth-of-type(2):before { content: "Item Name/Description"; }
+	td:nth-of-type(3):before { content: "Price"; }
+	td:nth-of-type(4):before { content: "Quantity"; }
+	td:nth-of-type(5):before { content: "Discount"; }
+	td:nth-of-type(6):before { content: "Tax"; }
+	td:nth-of-type(7):before { content: "Total"; }
 }
