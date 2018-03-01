@@ -193,11 +193,11 @@ table, thead, tbody, th, td, tr {
 /*
 	Label the data
 	*/
-	td:nth-of-type(1):before { content: "Item No/Title"; }
-	td:nth-of-type(2):before { content: "Item Name/Description"; }
-	td:nth-of-type(3):before { content: "Price"; }
-	td:nth-of-type(4):before { content: "Quantity"; }
-	td:nth-of-type(5):before { content: "Discount"; }
-	td:nth-of-type(6):before { content: "Tax"; }
-	td:nth-of-type(7):before { content: "Total"; }
+	td:nth-of-type(1):after { content: "Item No/Title"; }
+	td:nth-of-type(2):after { content: "Item Name/Description"; }
+	td:nth-of-type(3):after { content: "Price"; }
+	td:nth-of-type(4):after { content: "Quantity"; }
+	td:nth-of-type(5):after { content: "Discount"; }
+	td:nth-of-type(6):after { content: "Tax"; }
+	td:nth-of-type(7):after { content: "Total"; }
 }
