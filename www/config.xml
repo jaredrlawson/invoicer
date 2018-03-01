@@ -19,7 +19,8 @@
 
     <!-- We'll include the Barcode plugin as an example -->
 
-    <gap:plugin name="org.apache.cordova.file-transfer"/>
-    <gap:plugin name="org.apache.cordova.device"/>
+    <gap:plugin name="cordova-plugin-device" source="npm" />
+    <gap:plugin name="cordova-plugin-file" source="npm" />
+    <gap:plugin name="cordova-plugin-file-transfer" source="npm" />
 
 </widget>
