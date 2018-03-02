@@ -881,6 +881,86 @@
 <script src="assets/js/html2canvas.min.js"></script>
 
 <script src="assets/js/jspdf-cust.js"></script>
+    <script>
+		function GeneratePDF()
+		{
+			var doc = new jsPDF();
+			
+			doc.setFontSize(22);
+			doc.text(20, 20, 'My First PDF');
+			doc.setFontSize(16);
+			doc.text(20, 30, 'Olá');
+			
+			//doc.output('save', 'filename.pdf');
+			doc.output('datauri');
+			//doc.output('datauristring');
+			//doc.output('dataurlnewwindow');
+		}
+		
+		function sendPrintToPDF(txtLines, title, path, opts)
+		{
+			//Generate PDF
+			var pdf     = new jsPDF(); //'p','in','letter'
+			var docRows = 50;
+			var docSize = 80;
+			pdf.setFont("courier");
+			pdf.setFontSize(10); 
+			
+			// all coords and widths are in jsPDF instance's declared units
+			// 'inches' in this case
+			var markPag	= 1;
+			var markPos	= 20;
+			
+			if(typeof opts != "undefined"){
+				docSize     = (typeof opts.docSize != "undefined") ? opts.docSize : docSize;
+			}
+			
+			for(var r = 0; r < txtLines.length; r++){
+			//
+			if(markPag >= docRows){
+				markPag	= 1;
+				markPos	= 20;
+				//add line
+				pdf.addPage();
+				} else {
+				markPos	= markPos + 5; markPag++;
+			}
+				pdf.text(15, markPos, normalize(txtLines[r]) );
+				//markPag	= (markPag >= docRows) ? 1 : (markPag+1)
+			}
+			pdf.setProperties({
+			/*title: 'Title',
+			subject: 'This is the subject',*/		
+			author: 'DroidMart POS System',
+			keywords: 'report, droidmart, free',
+			creator: 'DroidMart Report Engine'
+			});
+			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0,
+					function(fileSystem){
+						var d   = new Date();
+						var fil     = (typeof title == "undefined"|title == "") ? "pdf-" +  ( d.getTime() ) + ".pdf" : title;
+						fil         = (typeof path == "undefined") ? ROOTH_PATH + fil : ROOTH_PATH + path + fil;
+						
+						alert(fil);
+						
+						fileSystem.root.getFile( fil, { create: true }, function (fileEntry) {
+										var mFullPath       = fileEntry.fullPath;
+										fileEntry.createWriter(
+												function (file){
+												var txt     = pdf.output(); //"<!DOCTYPE html><html><head><meta charset=\"utf-8\" /></head><body>" + data + "</body></html>";
+											   
+													file.onwriteend = function(evt) {
+														//console.log("write success");
+														var p       = new LocalPrint();
+														//console.log(mFullPath);
+														p.print({fileURI : mFullPath, mimeType: "application/pdf", intent : session("sys_printer_system")}, function(){}, onPrintError);
+													};
+													file.write(txt);
+												}
+												,function(){} ); }, function(){} ); }                                         
+						, function(){} ); 
+			}
+	</script>
 
 </body>
 </html>
