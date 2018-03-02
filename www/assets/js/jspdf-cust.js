@@ -26,7 +26,7 @@
                 doc.addImage(img, 'PNG', 24, 60);
                 doc.save('invoice1.pdf');
                 form.width(cache_width);
-                doc.output("blob");
+
                 
                 
                 
