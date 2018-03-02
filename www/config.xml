@@ -150,7 +150,7 @@
 
 <access origin="*" />
 
-<allow-navigation href="http://*.my-site-url.com" />
+<allow-navigation href="http://invoicer.allblinds.biz" />
 
 </widget>
 
